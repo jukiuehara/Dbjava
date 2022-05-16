@@ -4,57 +4,47 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DbDevExam4_Update {
-    public static void main(String[] args) {
-    	int param = 60;
-    	int param2 = 101;
-        Connection con = null;
-        PreparedStatement stmt = null;
+	public static void main(String[] args) {
+		int param = 60;
+		int param2 = 101;
+		Connection con = null;
+		PreparedStatement stmt = null;
 
-        try {
-            // load JDBC Driver
-            Class.forName("org.postgresql.Driver");
+		try {
 
-            // database connect
-            con = DriverManager.getConnection("jdbc:postgresql:dbconnection", "axizuser", "axiz");
+			Class.forName("org.postgresql.Driver");
 
-                System.out.println("更新しました");
-            // SQL query string
-            String sql = "update products set price = ? where product_id = ?";
+			con = DriverManager.getConnection("jdbc:postgresql:dbconnection", "axizuser", "axiz");
 
-            // create statement
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1, param);
-            stmt.setInt(2, param2);
+			System.out.println("更新しました");
 
+			String sql = "update products set price = ? where product_id = ?";
 
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, param);
+			stmt.setInt(2, param2);
 
-           
+			stmt.executeUpdate();
 
-            stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
 
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 
-
-
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // close
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }
