@@ -29,7 +29,7 @@ public class DbExam4 {
 
 
 
-            // execute
+           
             ResultSet rs = stmt.executeQuery();
 
             // output
