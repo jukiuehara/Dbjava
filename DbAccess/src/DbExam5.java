@@ -13,7 +13,9 @@ public class DbExam5 {
 		ProductDao pd = new ProductDao(con);		
 		List<products> array = pd.findAll();
 	        for (products i : array) {
-	            System.out.println(i);
+	            System.out.print( i.getproduct_id());
+	            System.out.print( i.getproduct_name());
+	            System.out.print( i.getprice());
 	        }
 	}
 }
