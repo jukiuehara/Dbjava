@@ -41,7 +41,6 @@ public class DbExam4 {
 					e.printStackTrace();
 				}
 			}
-
 			if (con != null) {
 				try {
 					con.close();
