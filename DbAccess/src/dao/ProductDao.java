@@ -10,9 +10,12 @@ import java.util.List;
 import entity.products;
 
 public class ProductDao{
-	private static final String SQL_ALL = "select product_id,product_name,price from products order by id";
+	private static final String SQL_ALL = "select product_id,product_name,price from products order by product_id";
+	private static final String SQL_INSERT = "insert into products (product_name,price) VALUES (?, ?)";
     private Connection connection;
+    
 
+    
     public ProductDao(Connection connection) {
         this.connection = connection;
     }
@@ -30,4 +33,14 @@ public class ProductDao{
     	}
     	return list;
     }
+    public void register(products product) {
+        try (PreparedStatement stmt = connection.prepareStatement(SQL_INSERT)) {
+            stmt.setString(1, product.getproduct_name());
+            stmt.setInt(2, product.getprice());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    
     }
