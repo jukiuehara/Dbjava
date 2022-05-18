@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 
 public class DbUtil {
 	public DbUtil() {
-		
+
 	}
+
 	public static Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
